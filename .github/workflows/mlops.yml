@@ -1,0 +1,49 @@
+name: MLOps Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  train-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Install uv
+      run: |
+        curl -Ls https://astral.sh/uv/install.sh | sh
+
+    - name: Install dependencies
+      run: |
+        uv sync
+
+    # - name: Install dependencies
+    #   run: |
+    #     pip install -r requirements.txt
+    #     pip install dvc mlflow
+
+    # - name: Pull data with DVC
+    #   run: |
+    #     dvc pull
+
+    # - name: Run pipeline
+    #   run: |
+    #     dvc repro
+
+    # - name: Evaluate metrics
+    #   run: |
+    #     cat metrics.txt
+
+    - name: Build Docker image
+      run: |
+        docker build -t mlops-train .
+        docker run mlops-train
