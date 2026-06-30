@@ -34,7 +34,7 @@ jobs:
     # - name: Pull data with DVC
     #   run: |
     #     dvc pull
-   - name: Pull data with DVC
+    - name: Pull data with DVC
       run: uv run dvc pull
     # - name: Run pipeline
     #   run: |
