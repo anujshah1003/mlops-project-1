@@ -34,8 +34,12 @@ jobs:
     # - name: Pull data with DVC
     #   run: |
     #     dvc pull
-    - name: Pull data with DVC
-      run: uv run dvc pull
+    # - name: Pull data with DVC
+    #   run: uv run dvc pull
+
+    - name: Generate dataset
+      run: python src/create_datset.py
+
     # - name: Run pipeline
     #   run: |
     #     dvc repro
