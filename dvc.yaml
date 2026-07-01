@@ -12,8 +12,9 @@ stages:
     deps:
       - src/train2.py
       - data/processed.csv
-    # params:
-    #   - train.n_estimators
+      - params.yaml
+    params:
+      - train.n_estimators
     outs:
       - models/model.pkl
 
