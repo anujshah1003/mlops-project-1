@@ -52,6 +52,8 @@ jobs:
         cat metrics.txt
 
     - name: Build Docker image
-      run: |
-        docker build -t mlops-train .
-        docker run mlops-train
+      run: 
+        # docker build -t mlops-train .
+        # docker run mlops-train
+        docker build -t mlops-api .
+        docker run -p 8000:8000 mlops-api
